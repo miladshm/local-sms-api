@@ -5,7 +5,7 @@
 //import { Modem } from './lib/modem'; // if you use typescript with nodejs
 const Modem = require('modemjs').Modem; // if you prefer to use the standard nodejs' style javascript
 const env = require('dotenv').config();
-const jsesc = require('jsesc');
+// const jsesc = require('jsesc');
 // this config is necessary but will be simplified soon, in the next updates of modem.js
 // PS: the msPause of 10000ms is recommended by now to avoid
 //  missed delivery reports but are free to try smaller periods
@@ -18,8 +18,8 @@ let msPause = parseInt(process.env.MS_PAUSE);
 module.exports = {
     send(phoneNumber, text) {
         console.log(`Sending SMS to ${phoneNumber}: "${text}"`);
-        text = jsesc(text); // logs the ASCII representation of the text
-        console.log(`ASCII representation of the text: ${text}`);
+        // text = jsesc(text); // logs the ASCII representation of the text
+        // console.log(`ASCII representation of the text: ${text}`);
         let modem = new Modem({
             port: port || '/dev/ttyACM0', // change this
             baudRate: baudRate || 115200, // change this
