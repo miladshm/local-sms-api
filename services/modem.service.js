@@ -28,6 +28,7 @@ module.exports = {
             ],
             msPause: msPause || 10000
         });
+        console.log(text);
         modem.sendSMS({ phoneNumber, text })
             .subscribe(data => console.log(data));
     }
