@@ -5,6 +5,7 @@
 //import { Modem } from './lib/modem'; // if you use typescript with nodejs
 const Modem = require('modemjs').Modem; // if you prefer to use the standard nodejs' style javascript
 var env = require('dotenv').config()
+const utf8 = require('utf8');
 
 
 
@@ -19,6 +20,9 @@ let baudRate = parseInt(process.env.BAUD_RATE);
 let msPause = parseInt(process.env.MS_PAUSE);
 module.exports = {
     send(phoneNumber, text) {
+        console.log(text);
+        text = utf8.encode(text);
+        console.log(text);
         let modem = new Modem({
             port: port || '/dev/ttyACM0', // change this
             baudRate: baudRate || 115200, // change this
@@ -28,7 +32,6 @@ module.exports = {
             ],
             msPause: msPause || 10000
         });
-        console.log(text);
         modem.sendSMS({ phoneNumber, text })
             .subscribe(data => console.log(data));
     }
