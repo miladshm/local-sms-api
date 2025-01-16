@@ -21,8 +21,6 @@ let msPause = parseInt(process.env.MS_PAUSE);
 module.exports = {
     send(phoneNumber, text) {
         console.log(text);
-        text = utf8.encode(text);
-        console.log(text);
         let modem = new Modem({
             port: port || '/dev/ttyACM0', // change this
             baudRate: baudRate || 115200, // change this
