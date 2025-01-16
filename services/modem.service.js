@@ -20,13 +20,13 @@ let msPause = parseInt(process.env.MS_PAUSE);
 module.exports = {
     send(phoneNumber, text) {
         let modem = new Modem({
-            port, // change this
-            baudRate, // change this
+            port: port || '/dev/ttyACM0', // change this
+            baudRate: baudRate || 115200, // change this
             initCommands: [
                 '\u241bAT', 'AT+CMGF=1', 'AT+CNMI=1,1,0,1,0',
                 'AT+CNMI=2', 'AT+CSMP=49,167,0,0', 'AT+CPMS=\"SM\",\"SM\",\"SM\"'
             ],
-            msPause
+            msPause: msPause || 10000
         });
         modem.sendSMS({ phoneNumber, text })
             .subscribe(data => console.log(data));
